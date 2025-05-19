@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perfect Global Consultancy</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f7f9;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* Header */
+    header {
+      background: #004080;
+      color: #fff;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    nav ul li a {
+      color: white;
+      font-weight: 600;
+      padding: 0.35rem 0.5rem;
+      transition: background 0.3s, color 0.3s;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    nav ul li a:hover {
+      background: #eec643;
+      color: #004080;
+    }
+    /* Hero Section */
+    #hero {
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80') no-repeat center center/cover;
+      color: #fff;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    #hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    #hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    #hero a.cta-btn {
+      background-color: #eec643;
+      color: #004080;
+      padding: 0.75rem 2rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 20px;
+      border: none;
+      box-shadow: 0 4px 12px rgba(238, 198, 67, 0.8);
+      transition: background-color 0.3s, box-shadow 0.3s;
+      display: inline-block;
+      max-width: 220px;
+      margin: 0 auto;
+      text-align: center;
+      white-space: nowrap;
+    }
+    #hero a.cta-btn:hover,
+    #hero a.cta-btn:focus {
+      background-color: #d4aa2e;
+      box-shadow: 0 6px 16px rgba(212, 170, 46, 1);
+      outline: none;
+    }
+    /* Sections */
+    section {
+      padding: 4rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #004080;
+    }
+    /* About Section */
+    #about .content {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      color: #555;
+      text-align: center;
+    }
+    /* Services Section */
+    #services .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .service-card {
+      background: white;
+      padding: 1.8rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover,
+    .service-card:focus-within {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      outline: none;
+    }
+    .service-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    /* Contact Section */
+    #contact .container {
+      max-width: 600px;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.12);
+      margin: 0 auto;
+    }
+    #contact form {
+      display: flex;
+      flex-direction: column;
+    }
+    #contact label {
+      margin-bottom: 0.5rem;
+    }
+    #contact input,
+    #contact textarea,
+    #contact select {
+      padding: 0.7rem;
+      margin-bottom: 1.2rem;
+      border-radius: 6px;
+      border: 1.8px solid #ccc;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    #contact button {
+      background: #004080;
+      color: white;
+      padding: 0.75rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #contact button:hover {
+      background: #2565b1;
+    }
+    /* Footer */
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 1.2rem 1rem;
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      #hero h2 {
+        font-size: 2.5rem;
+      }
+      #hero p {
+        font-size: 1rem;
+      }
+      header .container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      nav ul {
+        justify-content: center;
+      }
+    }
+    @media (max-width: 480px) {
+      #chatbot {
+        width: 90vw;
+        max-height: 320px;
+      }
+      #hero h2 {
+        font-size: 2rem;
+      }
+      #hero p {
+        font-size: 0.95rem;
+      }
+      #contact .container,
+      #services .services-grid,
+      #about .content {
+        padding: 0 0.5rem;
+      }
+    }
+    /* Chatbot Styles */
+    #chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 320px;
+      max-width: 90vw;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      z-index: 1500;
+      overflow: hidden;
+      max-height: 400px;
+      transform: translateY(400px);
+      transition: transform 0.3s ease-in-out;
+    }
+    #chatbot.open {
+      transform: translateY(0);
+    }
+    #chatbot header {
+      background: #004080;
+      color: white;
+      padding: 10px 15px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #chatbot header button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    #chat-messages {
+      flex-grow: 1;
+      padding: 10px 15px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+      background: #f9f9f9;
+    }
+    .message {
+      margin-bottom: 12px;
+      display: flex;
+    }
+    .message.user {
+      justify-content: flex-end;
+    }
+    .message.bot {
+      justify-content: flex-start;
+    }
+    .message .bubble {
+      padding: 8px 14px;
+      border-radius: 14px;
+      max-width: 75%;
+      word-wrap: break-word;
+    }
+    .message.user .bubble {
+      background: #eec643;
+      color: #004080;
+      border-bottom-right-radius: 4px;
+    }
+    .message.bot .bubble {
+      background: #004080;
+      color: white;
+      border-bottom-left-radius: 4px;
+    }
+    #chat-input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    #chat-input {
+      flex-grow: 1;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 0 0 0 12px;
+    }
+    #chat-input:focus {
+      outline: none;
+    }
+    #chat-send-btn {
+      background: #004080;
+      border: none;
+      color: white;
+      padding: 0 16px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      border-radius: 0 0 12px 0;
+      transition: background 0.3s;
+    }
+    #chat-send-btn:hover {
+      background: #2565b1;
+    }
+    /* Chat toggle button */
+    #chat-toggle-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #004080;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      cursor: pointer;
+      font-size: 28px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 1600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+    #chat-toggle-btn:hover {
+      background: #2565b1;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>Perfect Global Consultancy</h1>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#login">Login</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section id="hero">
+  <h2>Welcome to Perfect Global Consultancy</h2>
+  <p>Your trusted partner in licensing and web development.</p>
+  <a href="#contact" class="cta-btn" target="_blank" rel="noopener noreferrer">Get a Free Consultation</a>
+</section>
+
+<section id="about">
+  <h2>About Us</h2>
+  <div class="content">
+    <p>Welcome to PERFECT GLOBAL CONSULTANCY. Anup Khanna, founder and owner of Perfect Global Consultancy, celebrates 20 years as a leader in the licensing and web development industry, renowned for his expertise and client-first approach. With a mission to simplify complex regulatory processes, Anup has been the go-to expert for businesses navigating FSSAI, GST, MCD, DPCC, Excise, and other critical licenses. We are passionate about building innovative, functional, and visually stunning websites that help businesses grow.</p>
+  </div>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="services-grid">
+    <div class="service-card"><h3 class="service-title">FSSAI License</h3></div>
+    <div class="service-card"><h3 class="service-title">SEO (Search Engine Optimization)</h3></div>
+    <div class="service-card"><h3 class="service-title">Google My Business (GMB)</h3></div>
+    <div class="service-card"><h3 class="service-title">Website Development</h3></div>
+    <div class="service-card"><h3 class="service-title">Import & Export License</h3></div>
+    <div class="service-card"><h3 class="service-title">GeM Registration</h3></div>
+    <div class="service-card"><h3 class="service-title">MSME (Udyam) Registration</h3></div>
+    <div class="service-card"><h3 class="service-title">DDA Property Registration</h3></div>
+    <div class="service-card"><h3 class="service-title">MCD Trade License</h3></div>
+    <div class="service-card"><h3 class="service-title">Excise L-17 / P-10 License</h3></div>
+    <div class="service-card"><h3 class="service-title">DPCC License</h3></div>
+    <div class="service-card"><h3 class="service-title">GST Registration</h3></div>
+    <div class="service-card"><h3 class="service-title">Delhi Police Eating House License</h3></div>
+    <div class="service-card"><h3 class="service-title">Trade Mark License</h3></div>
+    <div class="service-card"><h3 class="service-title">Fire / NOC License</h3></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div class="container">
+    <form id="contact-form">
+      <label for="name">Name*</label>
+      <input type="text" id="name" name="name" required />
+      <label for="email">Email*</label>
+      <input type="email" id="email" name="email" required />
+      <label for="phone">Phone*</label>
+      <input type="tel" id="phone" name="phone" required />
+      <label for="license-type">Select License Type</label>
+      <select id="license-type" name="license-type">
+        <option value="FSSAI">FSSAI</option>
+        <option value="GST">GST</option>
+        <option value="MCD">MCD</option>
+        <option value="Excise">Excise</option>
+      </select>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+<footer>
+  <p>&copy; 2024 Perfect Global Consultancy. All rights reserved.</p>
+  <p>Contact: B-4, First Floor, Prehlad Market, DB Gupta Rd, Karol Bagh, New Delhi, 110005 | +91 9971522879 | info@perfectconsultancy.co</p>
+</footer>
+<!-- Chat Toggle Button -->
+<button id="chat-toggle-btn" aria-label="Toggle chat">💬</button>
+<!-- Chatbot Container -->
+<div id="chatbot" role="region" aria-live="polite" aria-label="Chatbot window">
+  <header>
+    <span>License Help Chat</span>
+    <button id="chat-close-btn" aria-label="Close chat">&times;</button>
+  </header>
+  <div id="chat-messages" tabindex="0" aria-live="polite" aria-atomic="true"></div>
+  <div id="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Ask about licenses..." aria-label="Chat input" autocomplete="off" />
+    <button id="chat-send-btn" aria-label="Send message">&#9658;</button>
+  </div>
+</div>
+
+<script>
+  const chatToggleBtn = document.getElementById('chat-toggle-btn');
+  const chatbot = document.getElementById('chatbot');
+  const chatCloseBtn = document.getElementById('chat-close-btn');
+  const chatMessages = document.getElementById('chat-messages');
+  const chatInput = document.getElementById('chat-input');
+  const chatSendBtn = document.getElementById('chat-send-btn');
+
+  // Show/hide chatbot
+  chatToggleBtn.addEventListener('click', () => {
+    chatbot.classList.toggle('open');
+    if (chatbot.classList.contains('open')) {
+      chatInput.focus();
+      chatToggleBtn.style.display = 'none';
+      appendBotMessage("Hello! I can answer your questions about licenses offered by Perfect Global Consultancy. Please ask away.");
+    }
+  });
+
+  chatCloseBtn.addEventListener('click', () => {
+    chatbot.classList.remove('open');
+    chatToggleBtn.style.display = 'flex';
+  });
+
+  // Append messages
+  function appendUserMessage(message){
+    const div = document.createElement('div');
+    div.classList.add('message', 'user');
+    div.innerHTML = `<div class="bubble">${message}</div>`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  function appendBotMessage(message){
+    const div = document.createElement('div');
+    div.classList.add('message', 'bot');
+    div.innerHTML = `<div class="bubble">${message}</div>`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  const licenseData = {
+    "fssai license": {
+      description: "Mandatory food safety license for food businesses issued by FSSAI.",
+      documents: ["Passport-size photo", "PAN Card", "Aadhaar Card", "Business address proof", "Nature of business", "Contact details"],
+      governmentFee: "₹100 – ₹7500/year (based on turnover)",
+      ourFee: "₹999 – ₹1999",
+      totalCost: "₹1099 – ₹9499/year"
+    },
+    "seo (search engine optimization)": {
+      description: "Helps your website rank higher in Google search results.",
+      documents: ["Business name and domain", "Target keywords/industry", "Competitor websites (if any)"],
+      governmentFee: "N/A",
+      ourFee: "₹2999 – ₹14999/month",
+      totalCost: "Based on SEO package selected"
+    },
+    "google my business (gmb)": {
+      description: "Setup and optimize your local business presence on Google Maps.",
+      documents: ["Business name", "Address proof", "Phone number", "Logo/photo"],
+      governmentFee: "N/A",
+      ourFee: "₹999 – ₹2499",
+      totalCost: "₹999 – ₹2499 (one-time)"
+    },
+    "website development": {
+      description: "Design and development of responsive, mobile-friendly websites.",
+      documents: ["Business name", "Logo and branding material", "Content for website", "Domain name (if purchased)"],
+      governmentFee: "N/A",
+      ourFee: "₹4999 – ₹49999+",
+      totalCost: "Depends on website complexity"
+    },
+    "import & export license": {
+      description: "IEC code issued by DGFT for import/export businesses.",
+      documents: ["PAN Card", "Aadhaar Card", "Business address proof", "Bank details", "Email & phone number"],
+      governmentFee: "₹500",
+      ourFee: "₹999",
+      totalCost: "₹1499"
+    },
+    "gem registration": {
+      description: "Register your business on Government e-Marketplace to sell to government buyers.",
+      documents: ["PAN & Aadhaar", "Business registration proof", "Bank details", "Email & phone number"],
+      governmentFee: "Free",
+      ourFee: "₹1499 – ₹2499",
+      totalCost: "₹1499 – ₹2499"
+    },
+    "msme (udyam) registration": {
+      description: "Register as a Micro, Small or Medium Enterprise to avail benefits.",
+      documents: ["PAN & Aadhaar", "Business details", "Bank details"],
+      governmentFee: "Free",
+      ourFee: "₹499 – ₹999",
+      totalCost: "₹499 – ₹999"
+    },
+    "dda property registration": {
+      description: "Legal registration of DDA-allotted property.",
+      documents: ["Allotment letter", "ID proof", "Address proof", "Payment receipts"],
+      governmentFee: "Varies by property",
+      ourFee: "₹1999 – ₹9999",
+      totalCost: "Based on property type and value"
+    },
+    "mcd trade license": {
+      description: "License to legally operate a business/shop in Delhi.",
+      documents: ["Business PAN & Aadhaar", "Address proof", "Type of business", "Photo of premises"],
+      governmentFee: "₹500 – ₹5000/year",
+      ourFee: "₹999 – ₹1999",
+      totalCost: "₹1499 – ₹6999/year"
+    },
+    "excise l-17 / p-10 license": {
+      description: "License to operate liquor-related businesses in Delhi.",
+      documents: ["Business registration", "Premises proof", "Excise bond and undertakings"],
+      governmentFee: "₹10000+ (varies)",
+      ourFee: "₹4999 – ₹19999",
+      totalCost: "₹14999 – ₹29999+"
+    },
+    "dpcc license": {
+      description: "Environmental clearance for pollution-prone businesses.",
+      documents: ["PAN & Aadhaar", "Site plan", "Pollution control measures", "Utility bill or property proof"],
+      governmentFee: "₹1000 – ₹10000",
+      ourFee: "₹1999 – ₹4999",
+      totalCost: "₹2999 – ₹14999"
+    },
+    "gst registration": {
+      description: "Tax registration required to collect and remit GST.",
+      documents: ["PAN & Aadhaar", "Business address proof", "Bank details", "Passport-size photo"],
+      governmentFee: "Free",
+      ourFee: "₹499 – ₹1499",
+      totalCost: "₹499 – ₹1499"
+    },
+    "delhi police eating house license": {
+      description: "License for restaurants and eating outlets in Delhi.",
+      documents: ["PAN, Aadhaar", "Restaurant layout", "FSSAI & Fire license", "Affidavits & NOCs"],
+      governmentFee: "₹3000 – ₹10000+",
+      ourFee: "₹1999 – ₹4999",
+      totalCost: "₹4999 – ₹14999+"
+    },
+    "trade mark license": {
+      description: "Legal protection for your brand name and logo.",
+      documents: ["Brand name/logo", "Business documents", "Power of attorney"],
+      governmentFee: "₹4500 – ₹9000",
+      ourFee: "₹1499 – ₹2999",
+      totalCost: "₹5999 – ₹11999"
+    },
+    "fire / noc license": {
+      description: "Fire safety certificate for shops, restaurants, offices, etc.",
+      documents: ["Building layout plan", "Fire safety equipment list", "Photos of premises"],
+      governmentFee: "₹1000 – ₹10000",
+      ourFee: "₹1999 – ₹4999",
+      totalCost: "₹2999 – ₹14999"
+    }
+  };
+
+  function getBotResponse(input) {
+    const text = input.toLowerCase();
+
+    let matchedKey = null;
+    for (const key in licenseData) {
+      if (text.includes(key)) {
+        matchedKey = key;
+        break;
+      }
+    }
+
+    const isPrice = text.includes('price') || text.includes('cost') || text.includes('fee') || text.includes('charge');
+    const isDocuments = text.includes('document') || text.includes('requirement') || text.includes('needed') || text.includes('paper');
+    const isDescription = text.includes('description') || text.includes('about') || text.includes('info');
+
+    if (matchedKey) {
+      const service = licenseData[matchedKey];
+      if (isPrice) return `Price - Government Fee: ${service.governmentFee}, Our Fee: ${service.ourFee}, Total Cost: ${service.totalCost}.`;
+      if (isDocuments) return `Documents required: ${service.documents.join(', ')}.`;
+      if (isDescription) return `Description: ${service.description}`;
+      return `${service.description} You can also ask about pricing or required documents.`;
+    }
+
+    if (text.includes('hello') || text.includes('hi') || text.includes('hey')) return "Hello! How can I assist you with our licenses and services?";
+    if (text.includes('thank')) return "You're welcome! Feel free to ask if you have more questions.";
+    if (text.includes('bye') || text.includes('goodbye')) return "Goodbye! Have a great day.";
+
+    return "Sorry, I can only answer questions related to our licenses and services. Please specify a service name.";
+  }
+
+  function sendMessage() {
+    const input = chatInput.value.trim();
+    if (!input) return;
+    appendUserMessage(input);
+    chatInput.value = '';
+    setTimeout(() => {
+      const response = getBotResponse(input);
+      appendBotMessage(response);
+    }, 300);
+  }
+
+  function appendUserMessage(message) {
+    const div = document.createElement('div');
+    div.classList.add('message', 'user');
+    div.innerHTML = `<div class="bubble">${message}</div>`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function appendBotMessage(message) {
+    const div = document.createElement('div');
+    div.classList.add('message', 'bot');
+    div.innerHTML = `<div class="bubble">${message}</div>`;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  chatSendBtn.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+</script>
+</body>
+</html>
